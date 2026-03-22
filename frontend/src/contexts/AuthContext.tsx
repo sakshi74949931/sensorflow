@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useCallback, type ReactNode } from "react";
 import { type User, type UserRole, mockUsers } from "@/data/mock-data";
-import { apiClient } from "@/lib/apiClient";
+import { apiClient, isAPIError } from "@/lib/apiClient";
 
 interface LoginResult {
   ok: boolean;
@@ -41,7 +41,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       // ── Try real backend first ──────────────────────────────────────────
       try {
-        const response: any = await apiClient.login(email, password);
+        const response = await apiClient.login(email, password);
 
         if (response?.token && response?.user) {
           const u: User = {
@@ -55,17 +55,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           localStorage.setItem("noise_user", JSON.stringify(u));
           return { ok: true };
         }
-      } catch (apiErr: any) {
-        // 401/403 from backend = wrong credentials — don't fall back to demo
-        if (apiErr?.status === 401 || apiErr?.status === 403) {
+      } catch (apiErr: unknown) {
+        if (isAPIError(apiErr) && (apiErr.status === 401 || apiErr.status === 403)) {
           return {
             ok: false,
             message: apiErr.message || "Invalid email or password",
             code: apiErr.status,
           };
         }
-        // Network error / 500 / backend down → fall through to demo mode
-        console.warn("API unreachable, falling back to demo mode:", apiErr?.message);
+        const errMsg = apiErr instanceof Error ? apiErr.message : String(apiErr);
+        console.warn("API unreachable, falling back to demo mode:", errMsg);
       }
 
       // ── Demo / offline fallback ─────────────────────────────────────────
@@ -82,8 +81,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       localStorage.setItem("auth_token", "demo_" + Date.now());
       return { ok: true };
 
-    } catch (err: any) {
-      return { ok: false, message: err?.message || "Login failed" };
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Login failed";
+      return { ok: false, message };
     } finally {
       setLoading(false);
     }

@@ -7,9 +7,11 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { mockLocations } from "@/data/mock-data";
-import { Plus, Pencil, Trash2, Settings, MapPin } from "lucide-react";
+import { Plus, Pencil, Trash2, Settings, MapPin, Sun, Moon, Monitor } from "lucide-react";
 import { apiClient } from "@/lib/apiClient";
 import { useAuth } from "@/contexts/AuthContext";
+import { useTheme } from "next-themes";
+import { Switch } from "@/components/ui/switch";
 
 interface LocationRow {
   id: string;
@@ -25,6 +27,7 @@ const emptyLoc: LocationRow = { id: "", name: "", address: "", lat: 0, lng: 0, t
 export default function SettingsPage() {
   const { user } = useAuth();
   const isAdmin = user?.role === "admin";
+  const { theme, setTheme } = useTheme();
 
   // Thresholds (stored in localStorage for demo when no DB)
   const [warningThreshold, setWarningThreshold] = useState(() => {
@@ -51,9 +54,9 @@ export default function SettingsPage() {
   const [locForm, setLocForm] = useState<LocationRow>(emptyLoc);
 
   useEffect(() => {
-    apiClient.getLocations().then((res: any) => {
+    apiClient.getLocations().then((res) => {
       if (res?.locations?.length) {
-        setLocations(res.locations.map((l: any) => ({
+        setLocations(res.locations.map((l) => ({
           id: String(l.id),
           name: l.name,
           address: l.address || "",
@@ -84,7 +87,7 @@ export default function SettingsPage() {
         await apiClient.updateLocation(editingLoc.id, payload);
         setLocations(prev => prev.map(l => l.id === editingLoc.id ? { ...l, ...locForm } : l));
       } else {
-        const res: any = await apiClient.createLocation(payload);
+        const res = await apiClient.createLocation(payload);
         setLocations(prev => [...prev, { ...locForm, id: String(res?.location?.id || Date.now()) }]);
       }
     } catch {
@@ -104,6 +107,57 @@ export default function SettingsPage() {
         <h2 className="text-2xl font-bold tracking-tight text-foreground">Settings</h2>
         <p className="text-sm text-muted-foreground mt-1">Configure thresholds, locations, and system preferences</p>
       </div>
+
+      {/* Appearance */}
+      <Card className="shadow-sm">
+        <CardHeader className="pb-3">
+          <CardTitle className="text-base flex items-center gap-2">
+            <Sun className="h-4 w-4" /> Appearance
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="space-y-0.5">
+              <Label>Dark Mode</Label>
+              <p className="text-xs text-muted-foreground">Switch between light and dark themes</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <Sun className="h-4 w-4 text-muted-foreground" />
+              <Switch
+                checked={theme === "dark"}
+                onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
+              />
+              <Moon className="h-4 w-4 text-muted-foreground" />
+            </div>
+          </div>
+          <div className="flex gap-2 pt-1">
+            <Button
+              variant={theme === "light" ? "default" : "outline"}
+              size="sm"
+              onClick={() => setTheme("light")}
+              className="gap-1.5"
+            >
+              <Sun className="h-3.5 w-3.5" /> Light
+            </Button>
+            <Button
+              variant={theme === "dark" ? "default" : "outline"}
+              size="sm"
+              onClick={() => setTheme("dark")}
+              className="gap-1.5"
+            >
+              <Moon className="h-3.5 w-3.5" /> Dark
+            </Button>
+            <Button
+              variant={theme === "system" ? "default" : "outline"}
+              size="sm"
+              onClick={() => setTheme("system")}
+              className="gap-1.5"
+            >
+              <Monitor className="h-3.5 w-3.5" /> System
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Threshold Configuration */}
       <Card className="shadow-sm">

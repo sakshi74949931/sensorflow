@@ -7,10 +7,10 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import type { UserRole } from "@/data/mock-data";
-import { Activity, Loader2, Eye, EyeOff, AlertCircle } from "lucide-react";
+import { Loader2, Eye, EyeOff, AlertCircle } from "lucide-react";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("admin@noisewatch.io");
+  const [email, setEmail] = useState("admin@inditronics.io");
   const [password, setPassword] = useState("password");
   const [showPassword, setShowPassword] = useState(false);
   const [role, setRole] = useState<UserRole>("admin");
@@ -40,13 +40,15 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-muted/30 px-4">
-      <Card className="w-full max-w-md shadow-lg">
-        <CardHeader className="text-center space-y-3">
-          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-            <Activity className="h-6 w-6" />
+    <div className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden bg-gradient-to-br from-[#0a0f3a] via-[#1a237e] to-[#121b5e]">
+      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-sidebar-primary/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-32 w-[28rem] h-[28rem] bg-sidebar-primary/5 rounded-full blur-3xl pointer-events-none" />
+      <Card className="w-full max-w-md shadow-2xl border-0 relative z-10">
+        <CardHeader className="text-center space-y-3 pb-2">
+          <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-2xl bg-white p-1.5 shadow-lg">
+            <img src="/logo.png" alt="Inditronics" className="h-full w-full rounded-xl object-contain" />
           </div>
-          <CardTitle className="text-2xl tracking-tight">NoiseWatch</CardTitle>
+          <CardTitle className="text-2xl tracking-tight">Inditronics</CardTitle>
           <CardDescription>Sign in to the noise monitoring dashboard</CardDescription>
         </CardHeader>
         <CardContent>
@@ -58,7 +60,7 @@ export default function LoginPage() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@noisewatch.io"
+                placeholder="admin@inditronics.io"
                 required
                 autoComplete="email"
               />
@@ -123,7 +125,7 @@ export default function LoginPage() {
             </Button>
 
             <p className="text-xs text-center text-muted-foreground">
-              Default: admin@noisewatch.io / password
+              Default: admin@inditronics.io / password
             </p>
           </form>
         </CardContent>

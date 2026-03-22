@@ -25,21 +25,21 @@ describe('Sound Sense Flow E2E Tests', () => {
   describe('Authentication Flow', () => {
     it('should login successfully with valid credentials', async () => {
       const response = await client.post('/auth/login', {
-        email: 'admin@noisewatch.io',
+        email: 'admin@inditronics.io',
         password: 'password',
       });
 
       expect(response.status).toBe(200);
       expect(response.data.token).toBeDefined();
       expect(response.data.user).toBeDefined();
-      expect(response.data.user.email).toBe('admin@noisewatch.io');
+      expect(response.data.user.email).toBe('admin@inditronics.io');
 
       authToken = response.data.token;
     });
 
     it('should fail login with invalid credentials', async () => {
       const response = await client.post('/auth/login', {
-        email: 'admin@noisewatch.io',
+        email: 'admin@inditronics.io',
         password: 'wrongpassword',
       });
 
@@ -48,19 +48,19 @@ describe('Sound Sense Flow E2E Tests', () => {
 
     it('should register new user successfully', async () => {
       const response = await client.post('/auth/register', {
-        email: 'newuser@noisewatch.io',
+        email: 'newuser@inditronics.io',
         password: 'password123',
         name: 'New User',
       });
 
       expect(response.status).toBe(201);
       expect(response.data.token).toBeDefined();
-      expect(response.data.user.email).toBe('newuser@noisewatch.io');
+      expect(response.data.user.email).toBe('newuser@inditronics.io');
     });
 
     it('should prevent registering duplicate email', async () => {
       const response = await client.post('/auth/register', {
-        email: 'admin@noisewatch.io',
+        email: 'admin@inditronics.io',
         password: 'password123',
         name: 'Duplicate User',
       });

@@ -4,6 +4,7 @@ import { mockDevices, mockAlarms, mockReadings, mockLocations, getLocationName, 
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
 import { Activity, Router, Bell, Volume2 } from "lucide-react";
 import { format } from "date-fns";
+import { useAuth } from "@/contexts/AuthContext";
 
 function StatCard({ title, value, subtitle, icon: Icon, accent }: {
   title: string; value: string | number; subtitle: string; icon: React.ElementType; accent?: string;
@@ -25,6 +26,7 @@ function StatCard({ title, value, subtitle, icon: Icon, accent }: {
 }
 
 export default function DashboardPage() {
+  const { user } = useAuth();
   const onlineCount = mockDevices.filter((d) => d.status === "online").length;
   const offlineCount = mockDevices.length - onlineCount;
   const activeAlarms = mockAlarms.filter((a) => a.status === "active").length;
@@ -48,9 +50,16 @@ export default function DashboardPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h2 className="text-2xl font-bold tracking-tight text-foreground">Dashboard</h2>
-        <p className="text-sm text-muted-foreground mt-1">Real-time overview of your noise monitoring network</p>
+      <div className="rounded-xl bg-gradient-to-r from-primary via-primary/90 to-primary/80 p-5 sm:p-6 text-primary-foreground">
+        <div className="flex items-center gap-4">
+          <div className="shrink-0 hidden sm:block rounded-xl bg-white/90 p-1 shadow-lg shadow-black/10">
+            <img src="/logo.png" alt="" className="h-14 w-14 rounded-lg object-contain" />
+          </div>
+          <div className="min-w-0">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight">Welcome back{user?.name ? `, ${user.name.split(" ")[0]}` : ""}</h2>
+            <p className="text-sm text-primary-foreground/70 mt-0.5">Real-time overview of your noise monitoring network</p>
+          </div>
+        </div>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -76,7 +85,7 @@ export default function DashboardPage() {
                   contentStyle={{ borderRadius: 8, border: "1px solid hsl(var(--border))", background: "hsl(var(--card))" }}
                   formatter={(v: number) => [`${v} dB`, "Avg Noise"]}
                 />
-                <Bar dataKey="avg" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="avg" fill="hsl(var(--sidebar-primary))" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </CardContent>

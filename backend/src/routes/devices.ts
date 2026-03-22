@@ -9,6 +9,7 @@ const router = Router();
 // Get all devices
 router.get(
   '/',
+  verifyToken,
   asyncHandler(async (req: Request, res: Response) => {
     const devices = await queries.getDevices();
     res.json({
@@ -21,6 +22,7 @@ router.get(
 // Get device details
 router.get(
   '/:id',
+  verifyToken,
   asyncHandler(async (req: Request, res: Response) => {
     const { id } = req.params;
     const device = await queries.getDeviceById(parseInt(id));
@@ -36,6 +38,7 @@ router.get(
 // Get device latest reading
 router.get(
   '/:id/latest',
+  verifyToken,
   asyncHandler(async (req: Request, res: Response) => {
     const { id } = req.params;
     const reading = await queries.getLatestReading(parseInt(id));
@@ -46,6 +49,7 @@ router.get(
 // Get device readings history
 router.get(
   '/:id/readings',
+  verifyToken,
   asyncHandler(async (req: Request, res: Response) => {
     const { id } = req.params;
     const { start_date, end_date, limit } = req.query;

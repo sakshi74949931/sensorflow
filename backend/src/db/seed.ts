@@ -2,9 +2,9 @@ import bcrypt from 'bcryptjs';
 import { pool } from './connection';
 
 const DEFAULT_USERS = [
-  { email: 'admin@noisewatch.io',     password: 'password', name: 'Admin User',        role: 'admin' },
-  { email: 'authority@noisewatch.io', password: 'password', name: 'Authority User',     role: 'authority' },
-  { email: 'support@noisewatch.io',   password: 'password', name: 'Support Engineer',   role: 'support' },
+  { email: 'admin@inditronics.io',     password: 'password', name: 'Admin User',        role: 'admin' },
+  { email: 'authority@inditronics.io', password: 'password', name: 'Authority User',     role: 'authority' },
+  { email: 'support@inditronics.io',   password: 'password', name: 'Support Engineer',   role: 'support' },
   { email: 'admin@test.com',          password: 'password', name: 'Test Admin',         role: 'admin' },
   { email: 'user@test.com',           password: 'password', name: 'Test User',          role: 'user' },
 ];
@@ -26,9 +26,9 @@ export async function seedDefaultUsers() {
         );
       }
       console.log(`✓ ${DEFAULT_USERS.length} default users created`);
-      console.log('   📧 admin@noisewatch.io / password');
-      console.log('   📧 authority@noisewatch.io / password');
-      console.log('   📧 support@noisewatch.io / password');
+      console.log('   📧 admin@inditronics.io / password');
+      console.log('   📧 authority@inditronics.io / password');
+      console.log('   📧 support@inditronics.io / password');
     } else {
       console.log(`✓ Users already exist (${count} found) - skipping seed`);
     }

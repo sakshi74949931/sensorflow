@@ -267,9 +267,9 @@ export async function getUserByEmail(email: string) {
     // bcrypt hash of 'password' — pre-computed so bcrypt.compare() works in demo mode
     const DEMO_HASH = '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
     const mockUsers: Record<string, any> = {
-      'admin@noisewatch.io':     { id: 1, email: 'admin@noisewatch.io',     name: 'Admin User',       role: 'admin',     password: DEMO_HASH },
-      'authority@noisewatch.io': { id: 2, email: 'authority@noisewatch.io', name: 'Authority User',    role: 'authority', password: DEMO_HASH },
-      'support@noisewatch.io':   { id: 3, email: 'support@noisewatch.io',   name: 'Support Engineer',  role: 'support',   password: DEMO_HASH },
+      'admin@inditronics.io':     { id: 1, email: 'admin@inditronics.io',     name: 'Admin User',       role: 'admin',     password: DEMO_HASH },
+      'authority@inditronics.io': { id: 2, email: 'authority@inditronics.io', name: 'Authority User',    role: 'authority', password: DEMO_HASH },
+      'support@inditronics.io':   { id: 3, email: 'support@inditronics.io',   name: 'Support Engineer',  role: 'support',   password: DEMO_HASH },
       'admin@test.com':          { id: 4, email: 'admin@test.com',          name: 'Test Admin',        role: 'admin',     password: DEMO_HASH },
       'user@test.com':           { id: 5, email: 'user@test.com',           name: 'Test User',         role: 'user',      password: DEMO_HASH },
     };

@@ -12,11 +12,11 @@ npm start       # or: npm run dev
 cd frontend
 npm run dev     # → http://localhost:8080
 
-admin@noisewatch.io 
+admin@inditronics.io 
 password
 
 
-# NoiseWatch — Full-Stack Noise Monitoring Dashboard
+# Inditronics — Full-Stack Noise Monitoring Dashboard
 
 > **Authority dashboard for noise monitoring, live sensor data, alarms, device control, and reporting.**
 
@@ -42,7 +42,7 @@ password
 
 ## 1. Project Overview
 
-NoiseWatch ek **full-stack web application** hai jo field devices se noise sensor data collect karta hai, live dashboard pe dikhata hai, threshold breach hone pe alarms raise karta hai, aur reports generate karta hai.
+Inditronics ek **full-stack web application** hai jo field devices se noise sensor data collect karta hai, live dashboard pe dikhata hai, threshold breach hone pe alarms raise karta hai, aur reports generate karta hai.
 
 ### Business Purpose
 - Authorities ko daily noise levels dikhana — location, device, aur time ke basis par
@@ -125,7 +125,7 @@ updated sensor flow/
 │   │       └── mock-data.ts        ← Demo data used when backend is offline
 │   ├── .env                        ← VITE_API_URL=http://localhost:5000/api
 │   ├── vite.config.ts              ← Port 8080, path alias @/
-│   └── index.html                  ← Tab title "NoiseWatch" + SVG favicon
+│   └── index.html                  ← Tab title "Inditronics" + SVG favicon
 │
 └── README.md                       ← This file
 ```
@@ -426,9 +426,9 @@ If WebSocket NOT connected:
 
 | Email | Password | Role |
 |-------|----------|------|
-| `admin@noisewatch.io` | `password` | Admin |
-| `authority@noisewatch.io` | `password` | Authority |
-| `support@noisewatch.io` | `password` | Support |
+| `admin@inditronics.io` | `password` | Admin |
+| `authority@inditronics.io` | `password` | Authority |
+| `support@inditronics.io` | `password` | Support |
 | `admin@test.com` | `password` | Admin |
 | `user@test.com` | `password` | User |
 
@@ -484,7 +484,7 @@ On first start you will see:
 ✓ Database schema created successfully
 🌱 Seeding default users...
 ✓ 5 default users created
-   📧 admin@noisewatch.io / password
+   📧 admin@inditronics.io / password
 ✅ Sound Sense Flow Backend Started
 📍 Server: http://localhost:5000
 🔌 WebSocket: ws://localhost:5000
@@ -501,7 +501,7 @@ Frontend starts at: **http://localhost:8080**
 
 ### Step 4 — Login
 Open **http://localhost:8080** → Login with:
-- Email: `admin@noisewatch.io`
+- Email: `admin@inditronics.io`
 - Password: `password`
 
 ---
@@ -540,7 +540,7 @@ Open **http://localhost:8080** → Login with:
 ```bash
 cd backend && npm start
 ```
-Then use `admin@noisewatch.io` / `password`.
+Then use `admin@inditronics.io` / `password`.
 
 ---
 
@@ -627,4 +627,4 @@ DB_PASSWORD=your_actual_mysql_password
 
 ---
 
-*Generated for NoiseWatch project — Sound Sense Flow v1.0.0*
+*Generated for Inditronics project — Sound Sense Flow v1.0.0*

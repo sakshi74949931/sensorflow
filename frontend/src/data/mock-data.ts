@@ -51,9 +51,9 @@ export interface Alarm {
 
 // ── Mock Users ──
 export const mockUsers: User[] = [
-  { id: "u1", email: "admin@noisewatch.io", name: "Priya Sharma", role: "admin" },
-  { id: "u2", email: "authority@noisewatch.io", name: "Raj Mehta", role: "authority" },
-  { id: "u3", email: "support@noisewatch.io", name: "Anita Desai", role: "support" },
+  { id: "u1", email: "admin@inditronics.io", name: "Priya Sharma", role: "admin" },
+  { id: "u2", email: "authority@inditronics.io", name: "Raj Mehta", role: "authority" },
+  { id: "u3", email: "support@inditronics.io", name: "Anita Desai", role: "support" },
 ];
 
 // ── Mock Locations ──

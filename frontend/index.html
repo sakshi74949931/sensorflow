@@ -3,21 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NoiseWatch</title>
+    <title>Inditronics</title>
     <meta name="description" content="Noise monitoring and management dashboard">
-    <meta name="author" content="NoiseWatch" />
+    <meta name="author" content="Inditronics" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="NoiseWatch">
+    <meta property="og:title" content="Inditronics">
     <meta property="og:description" content="Noise monitoring and management dashboard">
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="NoiseWatch">
+    <meta name="twitter:title" content="Inditronics">
     <meta name="twitter:description" content="Noise monitoring and management dashboard">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/logo.png">
+
+    <style>
+      @keyframes splash-spin { to { transform: rotate(360deg); } }
+      @keyframes splash-pulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.06); opacity: 0.85; } }
+      @keyframes splash-fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+      #splash {
+        --splash-green: #7cb342;
+        position: fixed; inset: 0; z-index: 9999;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        background: linear-gradient(145deg, #0a0f3a 0%, #1a237e 45%, #121b5e 100%);
+        transition: opacity 0.4s ease;
+      }
+      #splash img { width: 88px; height: 88px; border-radius: 18px; background: white; padding: 6px; box-shadow: 0 8px 32px rgba(0,0,0,0.3); animation: splash-pulse 2s ease-in-out infinite; }
+      #splash .splash-brand { margin-top: 18px; color: var(--splash-green); font-size: 13px; font-weight: 700; letter-spacing: 4px; font-family: system-ui, -apple-system, sans-serif; animation: splash-fade 0.6s ease 0.2s both; }
+      #splash .splash-sub { margin-top: 6px; color: rgba(255,255,255,0.35); font-size: 11px; font-weight: 400; letter-spacing: 1px; font-family: system-ui, -apple-system, sans-serif; animation: splash-fade 0.6s ease 0.4s both; }
+      #splash .splash-spinner { margin-top: 36px; width: 32px; height: 32px; border: 3px solid color-mix(in srgb, var(--splash-green) 15%, transparent); border-top-color: var(--splash-green); border-radius: 50%; animation: splash-spin 0.7s linear infinite; }
+    </style>
 </head>
 
   <body>
+    <div id="splash">
+      <img src="/logo.png" alt="" />
+      <div class="splash-brand">INDITRONICS</div>
+      <div class="splash-sub">Noise Monitoring System</div>
+      <div class="splash-spinner"></div>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

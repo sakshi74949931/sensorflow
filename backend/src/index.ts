@@ -25,7 +25,7 @@ const PORT = parseInt(process.env.PORT || '5000', 10);
 // Socket.IO setup
 export const io = new SocketIOServer(httpServer, {
   cors: {
-    origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
+    origin: process.env.CORS_ORIGIN || 'http://localhost:8080',
     methods: ['GET', 'POST'],
     credentials: true,
   },
@@ -45,7 +45,7 @@ setLiveEmitter((data) => io.emit('live-reading', data));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
+  origin: process.env.CORS_ORIGIN || 'http://localhost:8080',
   credentials: true,
 }));
 
@@ -103,7 +103,7 @@ async function start() {
       console.log(`🔗 API Base: http://localhost:${PORT}/api`);
       console.log(`💚 Health Check: http://localhost:${PORT}/api/health`);
       console.log(`🔌 WebSocket: ws://localhost:${PORT}`);
-      console.log(`🌐 CORS enabled for: ${process.env.CORS_ORIGIN || 'http://localhost:5173'}`);
+      console.log(`🌐 CORS enabled for: ${process.env.CORS_ORIGIN || 'http://localhost:8080'}`);
       console.log(`📝 Mode: ${process.env.NODE_ENV || 'development'}`);
       console.log('\n📚 API Endpoints:');
       console.log('   POST   /api/auth/login');
