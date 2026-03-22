@@ -5,6 +5,8 @@ TODO: Document your project here
 cd backend
 npm run migrate
 
+npm run build
+
 # 2. Start backend
 npm start       # or: npm run dev
 
